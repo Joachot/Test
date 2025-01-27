@@ -1,27 +1,92 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GIT y GitHub</title>
+    <title>Git, GitHub y GitHub Education</title>
+    <link rel="stylesheet" href="css.css">
+    <link rel="shortcut icon" href="git.png" >
 </head>
 <body>
-    <header>
-        <h1>GIT y GitHub</h1>
-    </header>
-    <main>
-        <h2>Introducción</h2>
-        <p>En este sitio, exploraremos el mundo de GIT y cómo GitHub juega un papel crucial en el desarrollo de software.</p>
-        <h2>¿Qué es GIT?</h2>
-        <p>GIT se refiere al uso de un sistema de control de versiones distribuido para gestionar el código fuente. Es una parte esencial de cualquier desarrollo de software moderno.</p>
-        <h2>¿Qué es GitHub?</h2>
-        <p>GitHub es una plataforma de desarrollo colaborativo de software para alojar proyectos utilizando el sistema de control de versiones Git. <a href="https://github.com" target="_blank">Visita GitHub</a> para más información.</p>
-        <h2>¿Qué es GitHub Education?</h2>
-        <p>GitHub Education ofrece herramientas y eventos gratuitos para estudiantes, profesores y escuelas. Ayuda a los educadores a enseñar y a los estudiantes a aprender mejor con GitHub.</p>
-        <p>Para más información, visita <a href="https://education.github.com" target="_blank">GitHub Education</a>.</p>
-    </main>
-    <footer>
-        <p>&copy; 2023 GIT y GitHub. Todos los derechos reservados.</p>
-    </footer>
+    <h1 id="princi">Git, GitHub y GitHub Education</h1>
+    <div id="content">
+        <div>
+            <h2>Git</h2>
+            <p>Git es un sistema de control de versiones distribuido de código abierto y gratuito diseñado para manejar todo, desde proyectos pequeños hasta muy grandes, con velocidad y eficiencia.</p>
+            <div class="gallery-container">
+                <div class="gallery" id="gallery">
+                  <img class="imgG" src="gitbanner.png" alt="Imagen 1">
+                  <img class="imgG" src="ejemplo.webp" alt="Imagen 2">
+                  <img class="imgG" src="img.jpg" alt="Imagen 3">
+                </div>
+                <div class="indicators" id="indicators"></div>
+            </div>
+            <script>
+                const gallery = document.getElementById("gallery");
+                const indicatorsContainer = document.getElementById("indicators");
+                const images = document.querySelectorAll(".gallery img");
+        
+                let currentIndex = 0;
+                let startX = 0;
+                let currentTranslate = 0;
+                let prevTranslate = 0;
+        
+                // Crear indicadores dinámicamente
+                images.forEach((_, index) => {
+                  const indicator = document.createElement("div");
+                  indicator.classList.add("indicator");
+                  if (index === 0) indicator.classList.add("active");
+                  indicator.dataset.index = index;
+                  indicatorsContainer.appendChild(indicator);
+                });
+        
+                const indicators = document.querySelectorAll(".indicator");
+        
+                // Actualizar galería e indicadores
+                function updateGallery(index) {
+                    currentTranslate = -index * gallery.offsetWidth;
+                    gallery.style.transform = `translateX(${currentTranslate}px)`;
+                    indicators.forEach((ind, i) => {
+                        ind.classList.toggle("active", i === index);
+                    });
+                }
+        
+                // Manejo de eventos táctiles
+                gallery.addEventListener("touchstart", (e) => {
+                    startX = e.touches[0].clientX;
+                    prevTranslate = currentTranslate;
+                });
+        
+                gallery.addEventListener("touchmove", (e) => {
+                    const currentX = e.touches[0].clientX;
+                    const deltaX = currentX - startX;
+                    currentTranslate = prevTranslate + deltaX;
+                    gallery.style.transform = `translateX(${currentTranslate}px)`;
+                });
+        
+                gallery.addEventListener("touchend", () => {
+                    const movedBy = currentTranslate - prevTranslate;
+                    if (movedBy < -50 && currentIndex < images.length - 1) {
+                        currentIndex++;
+                    } else if (movedBy > 50 && currentIndex > 0) {
+                        currentIndex--;
+                    }
+                    updateGallery(currentIndex);
+                });
+        
+                // Cambiar imagen al hacer clic en los indicadores
+                indicators.forEach((indicator) => {
+                    indicator.addEventListener("click", () => {
+                        currentIndex = parseInt(indicator.dataset.index);
+                        updateGallery(currentIndex);
+                    });
+                });
+            </script>
+        </div>
+        <h2>GitHub</h2>
+        <p>GitHub es una plataforma de desarrollo colaborativo para alojar proyectos utilizando el sistema de control de versiones Git. Se utiliza principalmente para la creación de código fuente de programas de computadora.</p>
+        <h2>GitHub Education</h2>
+        <p>GitHub Education ayuda a las escuelas a enseñar y a los estudiantes a aprender. Con la mejor herramienta de desarrollo en el mundo, los estudiantes pueden aprender a través de la práctica y la participación en el mundo real.</p>
+    </div>
 </body>
 </html>
