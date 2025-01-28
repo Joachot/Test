@@ -1,92 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Git, GitHub y GitHub Education</title>
-    <link rel="stylesheet" href="css.css">
-    <link rel="shortcut icon" href="git.png" >
-</head>
-<body>
-    <h1 id="princi">Git, GitHub y GitHub Education</h1>
-    <div id="content">
-        <div>
-            <h2>Git</h2>
-            <p>Git es un sistema de control de versiones distribuido de código abierto y gratuito diseñado para manejar todo, desde proyectos pequeños hasta muy grandes, con velocidad y eficiencia.</p>
-            <div class="gallery-container">
-                <div class="gallery" id="gallery">
-                  <img class="imgG" src="gitbanner.png" alt="Imagen 1">
-                  <img class="imgG" src="ejemplo.webp" alt="Imagen 2">
-                  <img class="imgG" src="img.jpg" alt="Imagen 3">
-                </div>
-                <div class="indicators" id="indicators"></div>
-            </div>
-            <script>
-                const gallery = document.getElementById("gallery");
-                const indicatorsContainer = document.getElementById("indicators");
-                const images = document.querySelectorAll(".gallery img");
-        
-                let currentIndex = 0;
-                let startX = 0;
-                let currentTranslate = 0;
-                let prevTranslate = 0;
-        
-                // Crear indicadores dinámicamente
-                images.forEach((_, index) => {
-                  const indicator = document.createElement("div");
-                  indicator.classList.add("indicator");
-                  if (index === 0) indicator.classList.add("active");
-                  indicator.dataset.index = index;
-                  indicatorsContainer.appendChild(indicator);
-                });
-        
-                const indicators = document.querySelectorAll(".indicator");
-        
-                // Actualizar galería e indicadores
-                function updateGallery(index) {
-                    currentTranslate = -index * gallery.offsetWidth;
-                    gallery.style.transform = `translateX(${currentTranslate}px)`;
-                    indicators.forEach((ind, i) => {
-                        ind.classList.toggle("active", i === index);
-                    });
-                }
-        
-                // Manejo de eventos táctiles
-                gallery.addEventListener("touchstart", (e) => {
-                    startX = e.touches[0].clientX;
-                    prevTranslate = currentTranslate;
-                });
-        
-                gallery.addEventListener("touchmove", (e) => {
-                    const currentX = e.touches[0].clientX;
-                    const deltaX = currentX - startX;
-                    currentTranslate = prevTranslate + deltaX;
-                    gallery.style.transform = `translateX(${currentTranslate}px)`;
-                });
-        
-                gallery.addEventListener("touchend", () => {
-                    const movedBy = currentTranslate - prevTranslate;
-                    if (movedBy < -50 && currentIndex < images.length - 1) {
-                        currentIndex++;
-                    } else if (movedBy > 50 && currentIndex > 0) {
-                        currentIndex--;
-                    }
-                    updateGallery(currentIndex);
-                });
-        
-                // Cambiar imagen al hacer clic en los indicadores
-                indicators.forEach((indicator) => {
-                    indicator.addEventListener("click", () => {
-                        currentIndex = parseInt(indicator.dataset.index);
-                        updateGallery(currentIndex);
-                    });
-                });
-            </script>
-        </div>
-        <h2>GitHub</h2>
-        <p>GitHub es una plataforma de desarrollo colaborativo para alojar proyectos utilizando el sistema de control de versiones Git. Se utiliza principalmente para la creación de código fuente de programas de computadora.</p>
-        <h2>GitHub Education</h2>
-        <p>GitHub Education ayuda a las escuelas a enseñar y a los estudiantes a aprender. Con la mejor herramienta de desarrollo en el mundo, los estudiantes pueden aprender a través de la práctica y la participación en el mundo real.</p>
+    <link rel="stylesheet" href="css.css" />
+    <link rel="shortcut icon" href="git.png" />
+  </head>
+  <body>
+    <div id = "Dprinci">
+        <h1 id="princi">Git, GitHub y GitHub Education</h1>
     </div>
-</body>
+    <div id="content">
+      <div>
+        <h2>Git</h2>
+        <p>
+          Git es un sistema de control de versiones distribuido de código
+          abierto y gratuito diseñado para manejar todo, desde proyectos
+          pequeños hasta muy grandes, con velocidad y eficiencia.
+        </p>
+        <div class="gallery-container">
+          <div class="gallery" id="gallery1">
+            <img class="imgG" src="src/git/gitbanner.png" alt="Imagen 1" />
+            <img class="imgG" src="src/git/ejemplo.webp" alt="Imagen 2" />
+            <img class="imgG" src="src/git/img.jpg" alt="Imagen 3" />
+          </div>
+          <div class="indicators" id="indicators1"></div>
+        </div>
+        <div class="Dboton">
+            <a href="https://git-scm.com/">
+                <button class="boton" id="GitBoton">
+                  <img id="imgGitB" src="git.png" width="20px" height="20px" />
+                  Página Oficial de Git
+                </button>
+              </a>
+        </div>
+      </div>
+      <div>
+        <h2>GitHub</h2>
+        <p>
+          GitHub es una plataforma de desarrollo colaborativo para alojar
+          proyectos utilizando el sistema de control de versiones Git. Se
+          utiliza principalmente para la creación de código fuente de programas
+          de computadora.
+        </p>
+        <div class="gallery-container">
+          <div class="gallery" id="gallery2">
+            <img class="imgG" src="src/gitHub/img1.jpg" alt="Imagen 1" />
+            <img class="imgG" src="src/gitHub/img2.jpg" alt="Imagen 2" />
+            <img class="imgG" src="src/gitHub/img3.png" alt="Imagen 3" />
+          </div>
+          <div class="indicators" id="indicators2"></div>
+        </div>
+      </div>
+      <div class="Dboton">
+        <a href="https://github.com/">
+          <button class="boton" >
+            <img id="imgGitB" src="gitHub.png" width="20px" height="20px" />
+            Página Oficial de GitHub
+          </button></a>
+      </div>
+      <div>
+        <h2>GitHub Education</h2>
+        <p>
+          GitHub Education ayuda a las escuelas a enseñar y a los estudiantes a
+          aprender. Con la mejor herramienta de desarrollo en el mundo, los
+          estudiantes pueden aprender a través de la práctica y la participación
+          en el mundo real.
+        </p>
+        <div class="gallery-container">
+          <div class="gallery" id="gallery3">
+            <img
+              class="imgG"
+              src="src/GitHubEducation/img1.jpg"
+              alt="Imagen 1"
+            />
+            <img
+              class="imgG"
+              src="src/GitHubEducation/img2.webp"
+              alt="Imagen 2"
+            />
+            <img
+              class="imgG"
+              src="src/GitHubEducation/img3.png"
+              alt="Imagen 3"
+            />
+          </div>
+          <div class="indicators" id="indicators3"></div>
+        </div>
+        <div class="Dboton">
+            <a href="https://education.github.com">
+              <button class="boton" id="GitBoton">
+                <img id="imgGitB" src="gheducation.webp" width="20px" height="20px" />
+                Página Oficial de GitHub Education
+              </button>
+            </a>
+            <a href="https://education.github.com/learner/learn">
+                <button class="boton" id="GitBoton">
+                    <svg fill="#586069" width="20" height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" data-view-component="true" class="octicon octicon-rocket gc-icon-header__icon">
+                        <path id="imgGitB" d="M14.064 0h.186C15.216 0 16 .784 16 1.75v.186a8.752 8.752 0 0 1-2.564 6.186l-.458.459c-.314.314-.641.616-.979.904v3.207c0 .608-.315 1.172-.833 1.49l-2.774 1.707a.749.749 0 0 1-1.11-.418l-.954-3.102a1.214 1.214 0 0 1-.145-.125L3.754 9.816a1.218 1.218 0 0 1-.124-.145L.528 8.717a.749.749 0 0 1-.418-1.11l1.71-2.774A1.748 1.748 0 0 1 3.31 4h3.204c.288-.338.59-.665.904-.979l.459-.458A8.749 8.749 0 0 1 14.064 0ZM8.938 3.623h-.002l-.458.458c-.76.76-1.437 1.598-2.02 2.5l-1.5 2.317 2.143 2.143 2.317-1.5c.902-.583 1.74-1.26 2.499-2.02l.459-.458a7.25 7.25 0 0 0 2.123-5.127V1.75a.25.25 0 0 0-.25-.25h-.186a7.249 7.249 0 0 0-5.125 2.123ZM3.56 14.56c-.732.732-2.334 1.045-3.005 1.148a.234.234 0 0 1-.201-.064.234.234 0 0 1-.064-.201c.103-.671.416-2.273 1.15-3.003a1.502 1.502 0 1 1 2.12 2.12Zm6.94-3.935c-.088.06-.177.118-.266.175l-2.35 1.521.548 1.783 1.949-1.2a.25.25 0 0 0 .119-.213ZM3.678 8.116 5.2 5.766c.058-.09.117-.178.176-.266H3.309a.25.25 0 0 0-.213.119l-1.2 1.95ZM12 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
+                    </svg>
+                  Registrate en GitHub Education
+                </button>
+              </a>
+          </div>
+      </div>
+      <div style="background-color: rgb(22, 33, 54); padding: 20px; border-radius: 10px; margin-top: 20px; border: 2px solid white; text-align: center;">
+        <h2 style="color: white; margin-bottom: 15px;">Enlaces de materia:</h2>
+        <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+            <!-- Botón para descargar el archivo Word -->
+            <a href="URL_DEL_ARCHIVO_WORD" download>
+                <button style="background-color: #2b5797; color: white; padding: 10px 20px; border: none; border-radius: 5px; display: flex; align-items: center; justify-content: flex-start; width: 200px; margin: 0 auto;">
+                    <img src="w.png" alt="Word Logo" style="width: 20px; height: 20px; margin-right: 10px;">
+                    Informe
+                </button>
+            </a>
+    
+            <!-- Botón para descargar el archivo PowerPoint -->
+            <a href="URL_DEL_ARCHIVO_PPT" download>
+                <button style="background-color: #d24d57; color: white; padding: 10px 20px; border: none; border-radius: 5px; display: flex; align-items: center; justify-content: flex-start; width: 200px; margin: 0 auto; text-align: left">
+                    <img src="p.png" alt="PowerPoint Logo" style="width: 20px; height: 20px; margin-right: 10px;">
+                    Diapositivas
+                </button>
+            </a>
+    
+            <!-- Botón para redirigir al repositorio del proyecto -->
+            <a href="URL_DEL_REPOSITORIO" target="_blank">
+                <button style="background-color: #24292f; color: white; padding: 10px 20px; border: none; border-radius: 5px; display: flex; align-items: center; justify-content: flex-start; width: 200px; margin: 0 auto;">
+                    <img src="ghb.png" alt="PowerPoint Logo" style="width: 20px; height: 20px; margin-right: 10px; ">
+                    Repositorio
+                </button>
+            </a>
+        </div>
+    </div>
+    
+    
+    <script>
+        // Función para inicializar cada galería independientemente
+        function initializeGallery(galleryId, indicatorsId) {
+          const gallery = document.getElementById(galleryId);
+          const indicatorsContainer = document.getElementById(indicatorsId);
+          const images = gallery.querySelectorAll("img");
+      
+          let currentIndex = 0;
+          let startX = 0;
+          let currentTranslate = 0;
+          let prevTranslate = 0;
+          let isDragging = false; // Para controlar si el ratón está presionado
+      
+          // Crear indicadores dinámicamente
+          images.forEach((_, index) => {
+            const indicator = document.createElement("div");
+            indicator.classList.add("indicator");
+            if (index === 0) indicator.classList.add("active");
+            indicator.dataset.index = index;
+            indicatorsContainer.appendChild(indicator);
+          });
+      
+          const indicators = indicatorsContainer.querySelectorAll(".indicator");
+      
+          // Actualizar galería e indicadores
+          function updateGallery(index) {
+            currentTranslate = -index * gallery.offsetWidth;
+            gallery.style.transform = `translateX(${currentTranslate}px)`;
+            indicators.forEach((ind, i) => {
+              ind.classList.toggle("active", i === index);
+            });
+          }
+      
+          // Manejo de eventos táctiles
+          gallery.addEventListener("touchstart", (e) => {
+            startX = e.touches[0].clientX;
+            prevTranslate = currentTranslate;
+          });
+      
+          gallery.addEventListener("touchmove", (e) => {
+            const currentX = e.touches[0].clientX;
+            const deltaX = currentX - startX;
+            currentTranslate = prevTranslate + deltaX;
+            gallery.style.transform = `translateX(${currentTranslate}px)`;
+          });
+      
+          gallery.addEventListener("touchend", () => {
+            const movedBy = currentTranslate - prevTranslate;
+            if (movedBy < -50 && currentIndex < images.length - 1) {
+              currentIndex++;
+            } else if (movedBy > 50 && currentIndex > 0) {
+              currentIndex--;
+            }
+            updateGallery(currentIndex);
+          });
+      
+          // Manejo de eventos con el ratón
+          gallery.addEventListener("mousedown", (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            prevTranslate = currentTranslate;
+            gallery.style.cursor = "grabbing"; // Cambiar el cursor al arrastrar
+          });
+      
+          gallery.addEventListener("mousemove", (e) => {
+            if (!isDragging) return;
+            const currentX = e.clientX;
+            const deltaX = currentX - startX;
+            currentTranslate = prevTranslate + deltaX;
+            gallery.style.transform = `translateX(${currentTranslate}px)`;
+          });
+      
+          gallery.addEventListener("mouseup", () => {
+            isDragging = false;
+            const movedBy = currentTranslate - prevTranslate;
+            if (movedBy < -50 && currentIndex < images.length - 1) {
+              currentIndex++;
+            } else if (movedBy > 50 && currentIndex > 0) {
+              currentIndex--;
+            }
+            updateGallery(currentIndex);
+            gallery.style.cursor = "grab"; // Restaurar el cursor
+          });
+      
+          gallery.addEventListener("mouseleave", () => {
+            isDragging = false;
+            gallery.style.cursor = "grab"; // Restaurar el cursor si el ratón sale del área
+          });
+      
+          // Cambiar imagen al hacer clic en los indicadores
+          indicators.forEach((indicator) => {
+            indicator.addEventListener("click", () => {
+              currentIndex = parseInt(indicator.dataset.index);
+              updateGallery(currentIndex);
+            });
+          });
+        }
+      
+        // Inicializar las tres galerías
+        initializeGallery("gallery1", "indicators1");
+        initializeGallery("gallery2", "indicators2");
+        initializeGallery("gallery3", "indicators3");
+        
+      </script>
+    </div>
+  </body>
 </html>
